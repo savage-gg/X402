@@ -1,0 +1,21 @@
+{
+  "name": "x402-demo-website",
+  "version": "1.0.0",
+  "description": "Simple website that monetizes content/API endpoints using the x402 payment protocol",
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  },
+  "dependencies": {
+    "@x402/core": "latest",
+    "@x402/express": "latest",
+    "@x402/evm": "latest",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
