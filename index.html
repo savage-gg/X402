@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>x402 Demo – Monetize APIs with Micropayments</title>
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="logo">x402</div>
+      <h1>Monetize Anything with HTTP 402</h1>
+      <p class="subtitle">
+        This demo website accepts real micropayments via the open <strong>x402</strong> protocol.
+        AI agents and developers can pay per request — no accounts, no API keys, no friction.
+      </p>
+    </header>
+
+    <section class="card">
+      <h2>How it works</h2>
+      <ol class="steps">
+        <li>Client requests a paid resource</li>
+        <li>Server responds with <code>HTTP 402 Payment Required</code> + payment instructions</li>
+        <li>Client signs a stablecoin payment (USDC on Base)</li>
+        <li>Server verifies & settles → returns the content</li>
+      </ol>
+    </section>
+
+    <section class="card">
+      <h2>Try the endpoints</h2>
+      <div class="endpoints">
+        <div class="endpoint free">
+          <div class="badge free-badge">FREE</div>
+          <h3>GET /api/free</h3>
+          <p>No payment required. Always returns data.</p>
+          <button onclick="callEndpoint('/api/free')">Call Free Endpoint</button>
+        </div>
+
+        <div class="endpoint paid">
+          <div class="badge paid-badge">$0.01 USDC</div>
+          <h3>GET /api/brief?topic=…</h3>
+          <p>On-demand structured research brief for any topic. Useful for agents & humans.</p>
+          <div class="topic-row">
+            <input id="topicInput" type="text" placeholder="e.g. solana defi, ai agents, x402" value="x402 payments" />
+            <button onclick="callBrief()">Generate Brief</button>
+          </div>
+        </div>
+
+        <div class="endpoint paid">
+          <div class="badge paid-badge">$0.001 USDC</div>
+          <h3>GET /api/premium-data</h3>
+          <p>Cheap micropayment data feed. Perfect for high-frequency agent use.</p>
+          <button onclick="callEndpoint('/api/premium-data')">Call Cheap Endpoint</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Response</h2>
+      <pre id="output">Click a button above to see the response…
+(Paid endpoints will return 402 until a proper x402 payment is attached)</pre>
+    </section>
+
+    <section class="card info">
+      <h2>How to benefit from this</h2>
+      <ul>
+        <li><strong>Sellers</strong>: Swap the brief generator for your real data, research, or LLM pipeline and start earning USDC per request.</li>
+        <li><strong>Builders</strong>: Let AI agents call <code>/api/brief?topic=…</code> and pay automatically.</li>
+        <li><strong>Creators</strong>: Turn any knowledge or tool into a pay-per-use API with zero subscription friction.</li>
+      </ul>
+      <p>
+        Replace the <code>PAY_TO_ADDRESS</code> in <code>.env</code> with your wallet,
+        deploy this anywhere Node.js runs, and you are live.
+      </p>
+    </section>
+
+    <footer>
+      <p>
+        Built with the open <a href="https://x402.org" target="_blank" rel="noopener">x402</a> standard ·
+        <a href="https://docs.x402.org" target="_blank" rel="noopener">Docs</a> ·
+        Testnet only (Base Sepolia)
+      </p>
+    </footer>
+  </div>
+
+  <script src="/app.js"></script>
+</body>
+</html>
